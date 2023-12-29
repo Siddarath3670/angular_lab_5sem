@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myFactApp">
+    <div ng-controller="calcit">
+        <p>
+            Enter the number :
+            <input type="number" name="fnum" id="fnum" ng-model="fnum">
+        </p>
+        <div>
+            <button ng-click="fact()">Factorial!!</button>
+            <button ng-click="square()">Square</button>
+        </div>
+        <div>
+            <p>
+                Result={{result}}
+            </p>
+        </div>
+    </div>
+    <script>
+        var cal =angular.module('myFactApp',[]);
+        cal.controller('calcit',function($scope)
+        {
+            $scope.result=0;
+            $scope.fnum;
+
+            $scope.fact=function(){
+                if($scope.fnum==1)
+                {
+                    $scope.result=1;
+                }
+                else
+                {
+                    $scope.result=$scope.fnum*$scope.fnum-1;
+                }
+            };
+        }
+        );
+    </script>
+</body>
+</html>
