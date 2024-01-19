@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        table,td,tr,th{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h1>Shopping Application</h1>
+        <br>
+        <h2>List of shopping items</h2>
+        <div class>
+            <table>
+                <tr>
+                    <th>SLNO</th>
+                    <th>Item</th>
+                </tr>
+                <tr ng-repeat="Items in shoppingItems">
+                    <td>{{$index + 1}}</td>
+                    <td>{{Items}}</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <span>Enter an item to Add:</span>
+            <input type="text" ng-model="newItem" id="add">
+            <button ng-click="addItem()">Add Item</button>
+        </div><br>
+        <div>
+            <span>select an item to Remove</span>
+            <select ng-model="selectItem" ng-options="item for item in shoppingItems"></select>
+            <button ng-click="removeItem()">Remove Item</button>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope){
+            $scope.shoppingItems=[]
+            $scope.addItem=function(){
+                if($scope.newItem && $scope.shoppingItems.indexOf($scope.newItem)==-1)
+                {
+                    $scope.shoppingItems.push($scope.newItem)
+                    $scope.newItem=""
+                }
+                else
+                {
+                    if($scope.newItem)
+                        alert("This Item is already there in the shopping list")
+                    else
+                        alert("Please Enter an item to add")
+                }
+            }
+            $scope.removeItem=function(){
+                if($scope.shoppingItems.indexOf($scope.selectItem)==-1){
+                    alert("Please select an item to remove")
+                }
+                else{
+                    var index=$scope.shoppingItems.indexOf($scope.selectItem)
+                    $scope.shoppingItems.splice(index,1)
+                    $scope.selectItem=""
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
