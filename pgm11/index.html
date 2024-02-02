@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h1>Student Details in lower case</h1>
+        <ul>
+            <li ng-repaeat="student in studentList">
+                {{student}}
+            </li>
+        </ul>
+
+        <h1>Student Details in upper case</h1>
+        <ul>
+            <li ng-repaeat="student in studentList">
+                {{student|uppercase}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.studentList = ['Name:abc, usn:2bu21cs139,dept:cse',
+                'Name:xyz, usn:2bu21cs001,dept:cse',
+                'Name:qwe, usn:2bu21cs002,dept:cse'];
+        });
+    </script>
+</body>
+
+</html>
