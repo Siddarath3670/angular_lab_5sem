@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="my" ng-controller="ctrl">
+      <h1>student details</h1>
+      <form action="" ng-submit="disp()">
+        <label for="">Enter tht no of studs</label>
+        <input
+          type="number"
+          name=""
+          id=""
+          ng-model="numStudents"
+          placeholder="eg111"
+        />
+      </form>
+      <table>
+        <tr>
+          <td>Sl.no</td>
+          <td>name</td>
+          <td>CGPA</td>
+        </tr>
+        <tr
+          ng-repeat="student in students | limitTo: numStudents track by $index "
+        >
+          <td>{{index+1}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.CGPA}}</td>
+        </tr>
+      </table>
+      <p>total no of students{{students.length}}</p>
+      <p>no of students fetched {{numStudents}}</p>
+    </div>
+    <script>
+      var app = angular.module("my", []);
+      app.controller("ctrl", function ($scope) {
+        //change the student name and cgpa as per your convenience AND MAKE STYLING AS PER YOUR WISH AND PLZ REMOVE THIS COMMENT WHILE SHOWINT IT TO MA'AM
+        $scope.students = [
+          { name: "sid", CGPA: 8.5 },
+          { name: "sid", CGPA: 8.5 },
+          { name: "sid", CGPA: 8.5 },
+          { name: "sid", CGPA: 8.5 },
+        ];
+        $scope.numStudents = 0;
+        $scope.disp = function () {};
+      });
+    </script>
+  </body>
+</html>
